@@ -2,9 +2,6 @@ import Illness.*;
 import Person.*;
 import Treatment.*;
 
-import java.util.List;
-import java.util.Scanner;
-
 import java.util.*;
 
 public class Main {
@@ -18,7 +15,8 @@ public class Main {
         System.out.print("Enter your age: ");
         int age = scanner.nextInt();
 
-        Person person = Person.getInstance(name, age);
+        Person.getInstance(name, age);
+
 
         // Display available symptoms and ask user to select
         List<String> symptoms = List.of(
@@ -37,11 +35,6 @@ public class Main {
         String symptomInput = scanner.nextLine();
         List<Integer> selectedSymptoms = parseSymptomsInput(symptomInput);
 
-        if (selectedSymptoms.size() > 2) {
-            System.out.println("Please select up to 2 symptoms.");
-            return;
-        }
-
         List<String> selectedSymptomsNames = new ArrayList<>();
         for (Integer index : selectedSymptoms) {
             selectedSymptomsNames.add(symptoms.get(index - 1));
@@ -49,9 +42,9 @@ public class Main {
         }
 
         Analysis analysis = new Analysis();
-        analysis.analyzeSymptoms(person, selectedSymptomsNames, getAvailableIllnesses());
+        analysis.analyzeSymptoms(Person.getInstance(name, age), selectedSymptomsNames, getAvailableIllnesses());
 
-        if (person.getIsIll()) {
+        if (Person.getInstance(name, age).getIsIll()) {
             System.out.println("Unfortunately, we were unable to diagnose your illness.");
         }
     }

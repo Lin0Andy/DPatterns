@@ -16,8 +16,10 @@ public class Person {
         this.name = name;
         this.age = age;
         this.isIll = false;
+        this.currentIllness = null;
     }
 
+    //singleton
     public static Person getInstance(String name, int age) {
         if (instance == null) {
             instance = new Person(name, age);
