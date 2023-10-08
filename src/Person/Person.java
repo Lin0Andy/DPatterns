@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import Illness.*;
+import Treatment.Treatment;
 
 public class Person {
     private static Person instance;
@@ -11,12 +12,14 @@ public class Person {
     private int age;
     private boolean isIll;
     private Illness currentIllness;
+    private Treatment currentTreatment;
 
     private Person(String name, int age) {
         this.name = name;
         this.age = age;
         this.isIll = false;
         this.currentIllness = null;
+        this.currentTreatment = null;
     }
 
     //singleton
@@ -38,4 +41,7 @@ public class Person {
 
     public void setCurrentIllness(Illness illness) {this.currentIllness = illness;}
     public Illness getCurrentIllness() {return this.currentIllness;}
+
+    public void setCurrentTreatment(Treatment treatment) {this.currentTreatment = treatment;}
+    public Treatment getCurrentTreatment() {return this.currentTreatment;}
 }

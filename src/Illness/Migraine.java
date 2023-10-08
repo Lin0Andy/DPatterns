@@ -1,14 +1,14 @@
 package Illness;
 
+import Decorations.Decorator;
 import Person.Person;
 import java.util.*;
 
 public class Migraine implements Illness {
-    private int stages = 3;
     List<String> symptoms = List.of("Headache", "Nausea");
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
@@ -23,16 +23,17 @@ public class Migraine implements Illness {
             person.setIsIll(true);
         } else {
             System.out.println("No specific illness detected.");
+            doDamage(person, stages);
         }
     }
 
     @Override
-    public void doDamage(Person person) {
+    public void doDamage(Person person, int stages) {
         if (stages > 0) {
             stages--;
-            System.out.println("Migraine worsened. Remaining stages: " + stages);
+            System.out.println("Your illness worsened. Remaining stages: " + stages);
         } else {
-            System.out.println("Migraine reached critical stage. Cannot be cured.");
+            System.out.println("Your illness reached critical stage. Cannot be cured.");
             person.setIsIll(false);
         }
     }

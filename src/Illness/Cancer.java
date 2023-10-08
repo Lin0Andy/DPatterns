@@ -1,15 +1,17 @@
 package Illness;
 
+import Decorations.Decorator;
+import Decorations.HairLoss;
+import Decorations.WeightChange;
 import Person.Person;
 
 import java.util.*;
 
 public class Cancer implements Illness {
-    private int stages = 4;
     List<String> symptoms = List.of("Fatigue", "Weight Loss");
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
@@ -24,16 +26,17 @@ public class Cancer implements Illness {
             person.setIsIll(true);
         } else {
             System.out.println("No specific illness detected.");
+            doDamage(person, stages);
         }
     }
 
     @Override
-    public void doDamage(Person person) {
+    public void doDamage(Person person, int stages) {
         if (stages > 0) {
             stages--;
-            System.out.println("Cancer worsened. Remaining stages: " + stages);
+            System.out.println("Your illness worsened. Remaining stages: " + stages);
         } else {
-            System.out.println("Cancer reached critical stage. Cannot be cured.");
+            System.out.println("Your illness reached critical stage. Cannot be cured.");
             person.setIsIll(false);
         }
     }

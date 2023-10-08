@@ -1,4 +1,27 @@
 package Decorations.NailChanges;
 
-public class NailDiscoloration {
+import Decorations.*;
+import Illness.*;
+import Person.*;
+import Treatment.*;
+import java.util.List;
+
+public class NailDiscoloration implements Decorator {
+    @Override
+    public void changeAppearance(Illness illness, Treatment treatment) {
+        if (treatment instanceof Chemotherapy) {
+            System.out.println("Your nails lost coloration");
+        }
+    }
+
+
+
+    @Override
+    public void doDamage(Person person, int stages) {}
+    @Override
+    public void diagnose(Person person, List<String> symptoms, int stages) {}
+    @Override
+    public void getSymptoms() {}
+    @Override
+    public void apply(Person person) {}
 }

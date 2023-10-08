@@ -8,6 +8,7 @@ public class Antibiotics implements Treatment {
     public void apply(Person person) {
         if (person.getCurrentIllness() instanceof Flu) {
             System.out.println("Applying antibiotics to cure Flu...");
+            person.setCurrentTreatment(this);
             person.setIsIll(false);
         } else {
             System.out.println("Incorrect treatment. The illness cannot be cured with antibiotics.");

@@ -1,3 +1,10 @@
+import Decorations.Decorator;
+import Decorations.HairLoss;
+import Decorations.NailChanges.NailBrittleness;
+import Decorations.NailChanges.NailDiscoloration;
+import Decorations.SkinChanges.SkinColor;
+import Decorations.SkinChanges.SkinTexture;
+import Decorations.WeightChange;
 import Illness.*;
 import Person.*;
 import Treatment.*;
@@ -38,14 +45,21 @@ public class Main {
         List<String> selectedSymptomsNames = new ArrayList<>();
         for (Integer index : selectedSymptoms) {
             selectedSymptomsNames.add(symptoms.get(index - 1));
-            System.out.println(selectedSymptomsNames);
         }
 
         Analysis analysis = new Analysis();
-        analysis.analyzeSymptoms(Person.getInstance(name, age), selectedSymptomsNames, getAvailableIllnesses());
+        analysis.analyzeSymptoms(Person.getInstance(name, age), selectedSymptomsNames, getAvailableIllnesses(), 3);
 
         if (Person.getInstance(name, age).getIsIll()) {
             System.out.println("Unfortunately, we were unable to diagnose your illness.");
+        }
+        else {
+            System.out.println("Your illness could affect you, changing your appearance. Let's see...");
+            List <Decorator> decorators = listOfDecorators();
+            for (Decorator decorator : decorators){
+                decorator.changeAppearance(Person.getInstance(name, age).getCurrentIllness(), Person.getInstance(name, age).getCurrentTreatment());
+            }
+            System.out.println("That's it! Goodbye!");
         }
     }
 
@@ -70,6 +84,27 @@ public class Main {
     }
 
     private static List<Illness> getAvailableIllnesses() {
-        return List.of(new Flu(), new Cancer(), new Migraine(), new Diabetes());
+        List<Illness> illnesses = new ArrayList<>();
+
+        illnesses.add(new Flu());
+        illnesses.add(new Cancer());
+        illnesses.add(new Diabetes());
+        illnesses.add(new Migraine());
+
+        Collections.shuffle(illnesses);
+        return illnesses;
+    }
+    private static List<Decorator> listOfDecorators() {
+        List<Decorator> decorators = new ArrayList<>();
+
+        decorators.add(new HairLoss());
+        decorators.add(new WeightChange());
+        decorators.add(new SkinColor());
+        decorators.add(new SkinTexture());
+        decorators.add(new NailBrittleness());
+        decorators.add(new NailDiscoloration());
+
+        Collections.shuffle(decorators);
+        return decorators;
     }
 }
