@@ -6,7 +6,12 @@ import Treatment.*;
 
 import java.util.List;
 
-public class HairLoss implements Decorator {
+public class HairLoss extends Decorator {
+    public HairLoss(Illness illnessD, Treatment treatmentD) {
+        super(illnessD, treatmentD);
+        changeAppearance(illnessD, treatmentD);
+    }
+
     @Override
     public void changeAppearance(Illness illness, Treatment treatment) {
         if (illness instanceof Cancer || treatment instanceof Chemotherapy) {
@@ -14,12 +19,13 @@ public class HairLoss implements Decorator {
         }
     }
 
+
     @Override
-    public void doDamage(Person person, int stages) {}
+    public void diagnose(Person person, List<String> symptoms, int stages) {    }
     @Override
-    public void diagnose(Person person, List<String> symptoms, int stages) {}
+    public void doDamage(Person person, int stages) {    }
     @Override
-    public void getSymptoms() {}
+    public void getSymptoms() {    }
     @Override
-    public void apply(Person person) {}
+    public void apply(Person person) {    }
 }

@@ -1,10 +1,6 @@
-import Decorations.Decorator;
-import Decorations.HairLoss;
-import Decorations.NailChanges.NailBrittleness;
-import Decorations.NailChanges.NailDiscoloration;
-import Decorations.SkinChanges.SkinColor;
-import Decorations.SkinChanges.SkinTexture;
-import Decorations.WeightChange;
+import Decorations.*;
+import Decorations.NailChanges.*;
+import Decorations.SkinChanges.*;
 import Illness.*;
 import Person.*;
 import Treatment.*;
@@ -55,10 +51,8 @@ public class Main {
         }
         else {
             System.out.println("Your illness could affect you, changing your appearance. Let's see...");
-            List <Decorator> decorators = listOfDecorators();
-            for (Decorator decorator : decorators){
-                decorator.changeAppearance(Person.getInstance(name, age).getCurrentIllness(), Person.getInstance(name, age).getCurrentTreatment());
-            }
+            Illness HairLoss = new HairLoss(Person.getInstance(name, age).getCurrentIllness(), Person.getInstance(name, age).getCurrentTreatment());
+            Illness WeightChange = new WeightChange(HairLoss, Person.getInstance(name, age).getCurrentTreatment());
             System.out.println("That's it! Goodbye!");
         }
     }
@@ -93,18 +87,5 @@ public class Main {
 
         Collections.shuffle(illnesses);
         return illnesses;
-    }
-    private static List<Decorator> listOfDecorators() {
-        List<Decorator> decorators = new ArrayList<>();
-
-        decorators.add(new HairLoss());
-        decorators.add(new WeightChange());
-        decorators.add(new SkinColor());
-        decorators.add(new SkinTexture());
-        decorators.add(new NailBrittleness());
-        decorators.add(new NailDiscoloration());
-
-        Collections.shuffle(decorators);
-        return decorators;
     }
 }

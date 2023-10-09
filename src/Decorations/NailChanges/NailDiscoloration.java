@@ -6,7 +6,11 @@ import Person.*;
 import Treatment.*;
 import java.util.List;
 
-public class NailDiscoloration implements Decorator {
+public class NailDiscoloration extends Decorator {
+    public NailDiscoloration(Illness illnessD, Treatment treatmentD) {
+        super(illnessD, treatmentD);
+    }
+
     @Override
     public void changeAppearance(Illness illness, Treatment treatment) {
         if (treatment instanceof Chemotherapy) {
