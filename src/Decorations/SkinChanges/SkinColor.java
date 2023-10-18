@@ -1,5 +1,6 @@
 package Decorations.SkinChanges;
 
+import Adaptor.Adapter;
 import Decorations.*;
 import Illness.*;
 import Person.*;
@@ -7,27 +8,26 @@ import Treatment.*;
 import java.util.List;
 
 public class SkinColor extends Decorator {
-    public SkinColor(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
+    public SkinColor(Illness illnessD, Adapter adapter) {
+        super(illnessD);
+        changeAppearance(illnessD, adapter);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness, Adapter adapter) {
         if (illness instanceof Cancer) {
-            System.out.println("Your skin color changed to yellow");
+            System.out.println(adapter.getMessage("appearance.skinYellow"));
         } else if (illness instanceof Diabetes) {
-            System.out.println("Your skin darkened somewhere around neck and groin");
+            System.out.println(adapter.getMessage("appearance.skinDarken"));
         }
     }
 
 
 
     @Override
-    public void doDamage(Person person, int stages) {}
+    public void doDamage(Person person, int stages, Adapter adapter) {}
     @Override
-    public void diagnose(Person person, List<String> symptoms, int stages) {}
+    public void diagnose(Person person, List<String> symptoms, int stages, Adapter adapter) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }

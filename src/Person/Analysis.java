@@ -1,32 +1,34 @@
 package Person;
 
+import Adaptor.Adapter;
 import Decorations.Decorator;
 import Illness.*;
 import Treatment.*;
+import Adaptor.*;
 import java.util.*;
 
 public class Analysis {
-    public void analyzeSymptoms(Person person, List<String> symptoms, List<Illness> illnesses, int stages) {
+    public void analyzeSymptoms(Person person, List<String> symptoms, List<Illness> illnesses, int stages, Adapter adapter) {
         for (Illness illness : illnesses) {
-            illness.diagnose(person, symptoms, stages);
+            illness.diagnose(person, symptoms, stages, adapter);
             stages--;
 
             if (person.getIsIll() && person.getCurrentIllness() == illness) {
-                if (treated(person)) {
-                    System.out.println("Success! You are cured.");
+                if (treated(person, adapter)) {
+                    System.out.println(adapter.getMessage("cure.success"));
                     return;
                 }
             }
         }
 
-        System.out.println("No suitable treatment found. The illness could not be cured.");
+        System.out.println(adapter.getMessage("cure.notfound"));
     }
 
-    private boolean treated(Person person) {
+    private boolean treated(Person person, Adapter adapter) {
         Treatment treatment = getTreatmentForIllness(person.getCurrentIllness());
 
         if (treatment != null) {
-            treatment.apply(person);
+            treatment.apply(person, adapter);
             return true;
         }
 

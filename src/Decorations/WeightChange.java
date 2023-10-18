@@ -1,33 +1,30 @@
 package Decorations;
 
+import Adaptor.Adapter;
 import Illness.*;
 import Person.*;
 import Treatment.*;
 import java.util.List;
 
 public class WeightChange extends Decorator {
-    public WeightChange(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
-        changeAppearance(illnessD, treatmentD);
+    public WeightChange(Illness illnessD, Adapter adapter) {
+        super(illnessD);
+        changeAppearance(illnessD, adapter);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness, Adapter adapter) {
         if (illness instanceof Cancer) {
-            System.out.println("You lost some weight");
-        } else if (treatment instanceof InsulinTherapy || treatment instanceof Chemotherapy) {
-            System.out.println("You gained some weight");
+            System.out.println(adapter.getMessage("appearance.weightLoss"));
         }
     }
 
 
 
     @Override
-    public void doDamage(Person person, int stages) {}
+    public void doDamage(Person person, int stages, Adapter adapter) {}
     @Override
-    public void diagnose(Person person, List<String> symptoms, int stages) {}
+    public void diagnose(Person person, List<String> symptoms, int stages, Adapter adapter) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }

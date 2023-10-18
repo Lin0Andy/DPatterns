@@ -1,5 +1,6 @@
 package Decorations.NailChanges;
 
+import Adaptor.Adapter;
 import Decorations.*;
 import Illness.*;
 import Person.*;
@@ -7,25 +8,24 @@ import Treatment.*;
 import java.util.List;
 
 public class NailBrittleness extends Decorator {
-    public NailBrittleness(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
+    public NailBrittleness(Illness illnessD, Adapter adapter) {
+        super(illnessD);
+        changeAppearance(illnessD, adapter);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness, Adapter adapter) {
         if (illness instanceof Diabetes) {
-            System.out.println("Your nails become brittle");
+            System.out.println(adapter.getMessage("appearance.nailBrittle"));
         }
     }
 
 
 
     @Override
-    public void doDamage(Person person, int stages) {}
+    public void doDamage(Person person, int stages, Adapter adapter) {}
     @Override
-    public void diagnose(Person person, List<String> symptoms, int stages) {}
+    public void diagnose(Person person, List<String> symptoms, int stages, Adapter adapter) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }
