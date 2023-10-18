@@ -51,8 +51,8 @@ public class Main {
         }
         else {
             System.out.println("Your illness could affect you, changing your appearance. Let's see...");
-            Illness HairLoss = new HairLoss(Person.getInstance(name, age).getCurrentIllness(), Person.getInstance(name, age).getCurrentTreatment());
-            Illness WeightChange = new WeightChange(HairLoss, Person.getInstance(name, age).getCurrentTreatment());
+            Illness HairLoss = new HairLoss(Person.getInstance(name, age).getCurrentIllness());
+            Illness WeightChange = new WeightChange(HairLoss);
             System.out.println("That's it! Goodbye!");
         }
     }

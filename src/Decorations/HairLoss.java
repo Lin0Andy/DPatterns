@@ -7,14 +7,14 @@ import Treatment.*;
 import java.util.List;
 
 public class HairLoss extends Decorator {
-    public HairLoss(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
-        changeAppearance(illnessD, treatmentD);
+    public HairLoss(Illness illnessD) {
+        super(illnessD);
+        changeAppearance(illnessD);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
-        if (illness instanceof Cancer || treatment instanceof Chemotherapy) {
+    public void changeAppearance(Illness illness) {
+        if (illness instanceof Cancer) {
             System.out.println("You lost your hair");
         }
     }
@@ -26,6 +26,4 @@ public class HairLoss extends Decorator {
     public void doDamage(Person person, int stages) {    }
     @Override
     public void getSymptoms() {    }
-    @Override
-    public void apply(Person person) {    }
 }

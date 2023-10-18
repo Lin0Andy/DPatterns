@@ -7,12 +7,12 @@ import Treatment.*;
 import java.util.List;
 
 public class NailBrittleness extends Decorator {
-    public NailBrittleness(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
+    public NailBrittleness(Illness illnessD) {
+        super(illnessD);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness) {
         if (illness instanceof Diabetes) {
             System.out.println("Your nails become brittle");
         }
@@ -26,6 +26,4 @@ public class NailBrittleness extends Decorator {
     public void diagnose(Person person, List<String> symptoms, int stages) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }

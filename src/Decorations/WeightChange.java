@@ -6,17 +6,15 @@ import Treatment.*;
 import java.util.List;
 
 public class WeightChange extends Decorator {
-    public WeightChange(Illness illnessD, Treatment treatmentD) {
-        super(illnessD, treatmentD);
-        changeAppearance(illnessD, treatmentD);
+    public WeightChange(Illness illnessD) {
+        super(illnessD);
+        changeAppearance(illnessD);
     }
 
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness) {
         if (illness instanceof Cancer) {
             System.out.println("You lost some weight");
-        } else if (treatment instanceof InsulinTherapy || treatment instanceof Chemotherapy) {
-            System.out.println("You gained some weight");
         }
     }
 
@@ -28,6 +26,4 @@ public class WeightChange extends Decorator {
     public void diagnose(Person person, List<String> symptoms, int stages) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }
