@@ -1,7 +1,7 @@
 package Treatment;
 
-import Adaptor.Adapter;
 import Illness.*;
+import Adaptor.*;
 import Person.*;
 
 public class InsulinTherapy implements Treatment {

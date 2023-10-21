@@ -1,10 +1,7 @@
 package Decorations;
 
-import Adaptor.Adapter;
+import Adaptor.*;
 import Illness.*;
-import Person.*;
-
-import java.util.List;
 
 public abstract class Decorator implements Illness{
     protected Illness illness;

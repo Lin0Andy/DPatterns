@@ -1,8 +1,7 @@
 package Illness;
 
-import Adaptor.Adapter;
-import Decorations.Decorator;
 import Person.Person;
+import Adaptor.*;
 import java.util.*;
 
 public class Migraine implements Illness {

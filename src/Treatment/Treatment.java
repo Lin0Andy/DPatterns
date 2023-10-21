@@ -1,7 +1,7 @@
 package Treatment;
 
-import Adaptor.Adapter;
 import Person.*;
+import Adaptor.*;
 
 //strategy
 public interface Treatment {

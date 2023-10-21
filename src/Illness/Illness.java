@@ -1,7 +1,6 @@
 package Illness;
 
 import Adaptor.*;
-import Decorations.*;
 import Person.Person;
 
 import java.util.List;

@@ -1,9 +1,8 @@
 package Decorations;
 
-import Adaptor.Adapter;
 import Illness.*;
+import Adaptor.*;
 import Person.*;
-import Treatment.*;
 
 import java.util.List;
 

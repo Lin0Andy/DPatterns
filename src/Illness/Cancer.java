@@ -1,12 +1,9 @@
 package Illness;
 
-import Adaptor.Adapter;
-import Decorations.Decorator;
-import Decorations.HairLoss;
-import Decorations.WeightChange;
 import Person.Person;
 
 import java.util.*;
+import  Adaptor.*;
 
 public class Cancer implements Illness {
     Adapter adapter = new Adapter();

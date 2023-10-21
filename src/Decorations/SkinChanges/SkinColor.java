@@ -1,10 +1,10 @@
 package Decorations.SkinChanges;
 
-import Adaptor.Adapter;
 import Decorations.*;
+import Adaptor.*;
 import Illness.*;
 import Person.*;
-import Treatment.*;
+
 import java.util.List;
 
 public class SkinColor extends Decorator {

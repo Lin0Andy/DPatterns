@@ -1,8 +1,8 @@
 package Treatment;
 
-import Adaptor.Adapter;
 import Person.*;
 import Illness.*;
+import Adaptor.*;
 
 public class Antibiotics implements Treatment {
     @Override

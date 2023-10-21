@@ -1,9 +1,7 @@
 package Illness;
 
-import Adaptor.Adapter;
-import Decorations.Decorator;
 import Person.Person;
-
+import Adaptor.*;
 import java.util.List;
 
 public class Flu implements Illness {

@@ -1,8 +1,9 @@
 package Treatment;
 
-import Adaptor.Adapter;
 import Illness.*;
 import Person.*;
+import Adaptor.*;
+
 public class Chemotherapy implements Treatment {
     @Override
     public void apply(Person person, Adapter adapter) {

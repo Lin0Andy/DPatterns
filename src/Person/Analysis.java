@@ -1,10 +1,9 @@
 package Person;
 
-import Adaptor.Adapter;
-import Decorations.Decorator;
 import Illness.*;
 import Treatment.*;
 import Adaptor.*;
+
 import java.util.*;
 
 public class Analysis {

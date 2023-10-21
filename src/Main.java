@@ -1,10 +1,9 @@
-import Adaptor.Adapter;
 import Decorations.*;
 import Decorations.NailChanges.*;
 import Decorations.SkinChanges.*;
+import Adaptor.*;
 import Illness.*;
 import Person.*;
-import Treatment.*;
 
 import java.util.*;
 
@@ -19,10 +18,10 @@ public class Main {
 
         int languageChoice = scanner.nextInt();
 
-        Adapter adapter = new ResourceBundleAdapter(languageChoice);
+        Adapter adapter = new Adapter();
+        adapter.ResourceBundleAdapter(languageChoice);
 
 
-        // Get user's information
         System.out.print(adapter.getMessage("welcome.message"));
         String name = scanner.nextLine();
 
@@ -32,7 +31,6 @@ public class Main {
         Person.getInstance(name, age);
 
 
-        // Display available symptoms and ask user to select
         List<String> symptoms = getLocalizedSymptoms(adapter);
 
 

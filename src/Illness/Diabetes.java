@@ -1,12 +1,9 @@
 package Illness;
 
-import Adaptor.Adapter;
-import Decorations.Decorator;
-import Decorations.NailChanges.NailBrittleness;
-import Decorations.SkinChanges.SkinColor;
 import Person.Person;
 
 import java.util.*;
+import Adaptor.*;
 
 public class Diabetes implements Illness {
     Adapter adapter = new Adapter();

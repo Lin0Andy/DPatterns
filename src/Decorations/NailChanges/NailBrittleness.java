@@ -1,10 +1,10 @@
 package Decorations.NailChanges;
 
-import Adaptor.Adapter;
+import Adaptor.*;
 import Decorations.*;
 import Illness.*;
 import Person.*;
-import Treatment.*;
+
 import java.util.List;
 
 public class NailBrittleness extends Decorator {

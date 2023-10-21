@@ -1,9 +1,9 @@
 package Decorations;
 
-import Adaptor.Adapter;
 import Illness.*;
 import Person.*;
-import Treatment.*;
+import Adaptor.*;
+
 import java.util.List;
 
 public class WeightChange extends Decorator {
