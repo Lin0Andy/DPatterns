@@ -1,41 +1,42 @@
 package Illness;
 
+import Decorations.Decorator;
+import Decorations.NailChanges.NailBrittleness;
+import Decorations.SkinChanges.SkinColor;
 import Person.Person;
 
 import java.util.*;
-import Adaptor.*;
 
 public class Diabetes implements Illness {
-    Adapter adapter = new Adapter();
-    List<String> symptoms = List.of(adapter.getMessage("symptom.symptom7"), adapter.getMessage("symptom.symptom8"));
+    List<String> symptoms = List.of("Frequent Urination", "Increased Thirst");
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms, int stages, Adapter adapter) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
-            if (symptom.equals(adapter.getMessage("symptom.symptom7")) || symptom.equals(adapter.getMessage("symptom.symptom8"))) {
+            if (symptom.equals("Frequent Urination") || symptom.equals("Increased Thirst")) {
                 points++;
             }
         }
 
         if (points >= 2) {
-            System.out.println(adapter.getMessage("diagnose.diabetes"));
+            System.out.println("Diagnosed with Diabetes.");
             person.setCurrentIllness(this);
             person.setIsIll(true);
         } else {
-            System.out.println(adapter.getMessage("diagnose.no"));
-            doDamage(person, stages, adapter);
+            System.out.println("No specific illness detected.");
+            doDamage(person, stages);
         }
     }
 
     @Override
-    public void doDamage(Person person, int stages, Adapter adapter) {
+    public void doDamage(Person person, int stages) {
         if (stages > 0) {
             stages--;
-            System.out.println(adapter.getMessage("stages.remaining") + " " + stages);
+            System.out.println("Your illness worsened. Remaining stages: " + stages);
         } else {
-            System.out.println(adapter.getMessage("stages.critical"));
+            System.out.println("Your illness reached critical stage. Cannot be cured.");
             person.setIsIll(false);
         }
     }

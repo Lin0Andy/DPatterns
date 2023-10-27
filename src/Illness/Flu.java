@@ -1,40 +1,40 @@
 package Illness;
 
+import Decorations.Decorator;
 import Person.Person;
-import Adaptor.*;
+
 import java.util.List;
 
 public class Flu implements Illness {
-    Adapter adapter = new Adapter();
-    List<String> symptoms = List.of(adapter.getMessage("symptom.symptom1"), adapter.getMessage("symptom.symptom2"));
+    List<String> symptoms = List.of("Fever", "Cough");
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms, int stages, Adapter adapter) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
-            if (symptom.equals(adapter.getMessage("symptom.symptom1")) || symptom.equals(adapter.getMessage("symptom.symptom2"))) {
+            if (symptom.equals("Fever") || symptom.equals("Cough")) {
                 points++;
             }
         }
 
         if (points >= 2) {
-            System.out.println(adapter.getMessage("diagnose.flu"));
+            System.out.println("Diagnosed with Flu.");
             person.setCurrentIllness(this);
             person.setIsIll(true);
         } else {
-            System.out.println(adapter.getMessage("diagnose.no"));
-            doDamage(person, stages, adapter);
+            System.out.println("No specific illness detected.");
+            doDamage(person, stages);
         }
     }
 
     @Override
-    public void doDamage(Person person, int stages, Adapter adapter) {
+    public void doDamage(Person person, int stages) {
         if (stages > 0) {
             stages--;
-            System.out.println(adapter.getMessage("stages.remaining") + " " + stages);
+            System.out.println("Your illness worsened. Remaining stages: " + stages);
         } else {
-            System.out.println(adapter.getMessage("stages.critical"));
+            System.out.println("Your illness reached critical stage. Cannot be cured.");
             person.setIsIll(false);
         }
     }
@@ -44,4 +44,3 @@ public class Flu implements Illness {
         System.out.println(symptoms);
     }
 }
-

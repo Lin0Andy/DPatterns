@@ -2,17 +2,16 @@ package Treatment;
 
 import Person.*;
 import Illness.*;
-import Adaptor.*;
 
 public class Antibiotics implements Treatment {
     @Override
-    public void apply(Person person, Adapter adapter) {
+    public void apply(Person person) {
         if (person.getCurrentIllness() instanceof Flu) {
-            System.out.println(adapter.getMessage("cure.antibiotics"));
+            System.out.println("Applying antibiotics to cure Flu...");
             person.setCurrentTreatment(this);
             person.setIsIll(false);
         } else {
-            System.out.println(adapter.getMessage("cure.incorrect"));
+            System.out.println("Incorrect treatment. The illness cannot be cured with antibiotics.");
         }
     }
 }

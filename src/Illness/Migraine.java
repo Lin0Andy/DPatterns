@@ -1,40 +1,38 @@
 package Illness;
 
+import Decorations.Decorator;
 import Person.Person;
-import Adaptor.*;
 import java.util.*;
 
 public class Migraine implements Illness {
-    Adapter adapter = new Adapter();
-    List<String> symptoms = List.of(adapter.getMessage("symptom.symptom5"), adapter.getMessage("symptom.symptom6"));
+    List<String> symptoms = List.of("Headache", "Nausea");
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms, int stages, Adapter adapter) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
-            if (symptom.equals(adapter.getMessage("symptom.symptom5")) || symptom.equals(adapter.getMessage("symptom.symptom6"))) {
+            if (symptom.equals("Headache") || symptom.equals("Nausea")) {
                 points++;
             }
         }
 
         if (points >= 2) {
-            System.out.println(adapter.getMessage("diagnose.migraine"));
+            System.out.println("Diagnosed with Migraine.");
             person.setCurrentIllness(this);
             person.setIsIll(true);
         } else {
-            System.out.println(adapter.getMessage("diagnose.no"));
-            doDamage(person, stages, adapter);
+            System.out.println("No specific illness detected.");
+            doDamage(person, stages);
         }
     }
-
     @Override
-    public void doDamage(Person person, int stages, Adapter adapter) {
+    public void doDamage(Person person, int stages) {
         if (stages > 0) {
             stages--;
-            System.out.println(adapter.getMessage("stages.remaining") + " " + stages);
+            System.out.println("Your illness worsened. Remaining stages: " + stages);
         } else {
-            System.out.println(adapter.getMessage("stages.critical"));
+            System.out.println("Your illness reached critical stage. Cannot be cured.");
             person.setIsIll(false);
         }
     }
