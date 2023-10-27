@@ -1,10 +1,6 @@
-import Decorations.Decorator;
-import Decorations.HairLoss;
-import Decorations.NailChanges.NailBrittleness;
-import Decorations.NailChanges.NailDiscoloration;
-import Decorations.SkinChanges.SkinColor;
-import Decorations.SkinChanges.SkinTexture;
-import Decorations.WeightChange;
+import Decorations.*;
+import Decorations.NailChanges.*;
+import Decorations.SkinChanges.*;
 import Illness.*;
 import Person.*;
 import Treatment.*;
@@ -38,7 +34,7 @@ public class Main {
 
         System.out.println("Please select up to 2 symptoms.");
         System.out.println("Please enter the numbers of the symptoms you are experiencing (comma-separated): ");
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         String symptomInput = scanner.nextLine();
         List<Integer> selectedSymptoms = parseSymptomsInput(symptomInput);
 
@@ -48,18 +44,42 @@ public class Main {
         }
 
         Analysis analysis = new Analysis();
-        analysis.analyzeSymptoms(Person.getInstance(name, age), selectedSymptomsNames, getAvailableIllnesses(), 3);
+        analysis.addObserver(Person.getInstance(name, age));
+
+        System.out.println("You need subscription. Wanna get one? 1-Yes / 0-No");
+        String confirm1 = scanner.nextLine();
+        int intConf1 = Integer.parseInt(confirm1);
+
+        if (intConf1 == 1){
+            Person.getInstance(name, age).setHasSubscription(true);
+            System.out.println("Done!");
+        }
+        analysis.analyzeSymptoms(Person.getInstance(name, age), selectedSymptomsNames, getAvailableIllnesses(), 5);
 
         if (Person.getInstance(name, age).getIsIll()) {
             System.out.println("Unfortunately, we were unable to diagnose your illness.");
         }
         else {
-            System.out.println("Your illness could affect you, changing your appearance. Let's see...");
-            List <Decorator> decorators = listOfDecorators();
-            for (Decorator decorator : decorators){
-                decorator.changeAppearance(Person.getInstance(name, age).getCurrentIllness(), Person.getInstance(name, age).getCurrentTreatment());
+            analysis.notifyObservers("New treatment options available. Want to proceed? 1-Yes / 0-No");
+            String confirm2 = scanner.nextLine();
+            int intConf2 = Integer.parseInt(confirm2);
+
+            if (intConf2 == 1){
+                System.out.println("What country are you from?");
+                String country = scanner.nextLine();
+                Person.getInstance(name, age).setCountry(country);
+                Person.getInstance(name, age).prescribeMedicine();
+                System.out.println("Your illness could affect you, changing your appearance. Let's see...");
+                Illness HairLoss = new HairLoss(Person.getInstance(name, age).getCurrentIllness());
+                Illness WeightChange = new WeightChange(HairLoss);
+                Illness SkinColor = new SkinColor(WeightChange);
+                Illness NailBrittleness = new NailBrittleness(SkinColor);
+                System.out.println("That's it! Goodbye!");
             }
-            System.out.println("That's it! Goodbye!");
+            else{
+                System.out.println("Then there is nothing we can do. Goodbye.");
+            }
+
         }
     }
 
@@ -93,18 +113,5 @@ public class Main {
 
         Collections.shuffle(illnesses);
         return illnesses;
-    }
-    private static List<Decorator> listOfDecorators() {
-        List<Decorator> decorators = new ArrayList<>();
-
-        decorators.add(new HairLoss());
-        decorators.add(new WeightChange());
-        decorators.add(new SkinColor());
-        decorators.add(new SkinTexture());
-        decorators.add(new NailBrittleness());
-        decorators.add(new NailDiscoloration());
-
-        Collections.shuffle(decorators);
-        return decorators;
     }
 }

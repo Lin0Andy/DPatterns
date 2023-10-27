@@ -6,9 +6,13 @@ import Person.*;
 import Treatment.*;
 import java.util.List;
 
-public class SkinColor implements Decorator {
+public class SkinColor extends Decorator {
+    public SkinColor(Illness illnessD) {
+        super(illnessD);
+    }
+
     @Override
-    public void changeAppearance(Illness illness, Treatment treatment) {
+    public void changeAppearance(Illness illness) {
         if (illness instanceof Cancer) {
             System.out.println("Your skin color changed to yellow");
         } else if (illness instanceof Diabetes) {
@@ -24,6 +28,4 @@ public class SkinColor implements Decorator {
     public void diagnose(Person person, List<String> symptoms, int stages) {}
     @Override
     public void getSymptoms() {}
-    @Override
-    public void apply(Person person) {}
 }

@@ -2,10 +2,17 @@ package Decorations;
 
 import Illness.*;
 import Person.*;
-import Treatment.*;
 
 import java.util.List;
 
-public interface Decorator extends Illness, Treatment{
-    void changeAppearance(Illness illness, Treatment treatment);
+public abstract class Decorator implements Illness{
+    protected Illness illness;
+
+    public Decorator (Illness illnessD){
+        this.illness = illnessD;
+    }
+
+    public void changeAppearance(Illness illness) {
+
+    }
 }

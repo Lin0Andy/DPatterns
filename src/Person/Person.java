@@ -1,18 +1,19 @@
 package Person;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import Adapter.*;
 import Illness.*;
+import Observer.*;
 import Treatment.Treatment;
 
-public class Person {
+public class Person implements ObserverPattern {
     private static Person instance;
     private String name;
     private int age;
     private boolean isIll;
     private Illness currentIllness;
     private Treatment currentTreatment;
+    private boolean hasSubscription = false;
+    private String country;
 
     private Person(String name, int age) {
         this.name = name;
@@ -44,4 +45,26 @@ public class Person {
 
     public void setCurrentTreatment(Treatment treatment) {this.currentTreatment = treatment;}
     public Treatment getCurrentTreatment() {return this.currentTreatment;}
+    public void setCountry(String country) {this.country = country;}
+    public String getCountry() {return country;}
+
+    public void prescribeMedicine() {
+        if (hasSubscription) {
+            Prescription prescription = new CountryMedicineAdapter(country);
+            prescription.prescribeMedicine();
+        } else {
+            System.out.println("You need a subscription to get a prescription.");
+        }
+    }
+
+    @Override
+    public void update(String message) {
+        if (hasSubscription) {
+            System.out.println("Notification: " + message);
+        }
+    }
+
+    public void setHasSubscription(boolean hasSubscription) {
+        this.hasSubscription = hasSubscription;
+    }
 }

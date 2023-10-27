@@ -1,11 +1,13 @@
 package Person;
 
-import Decorations.Decorator;
 import Illness.*;
 import Treatment.*;
 import java.util.*;
+import Observer.*;
 
 public class Analysis {
+    private final List<ObserverPattern> observers = new ArrayList<>();
+
     public void analyzeSymptoms(Person person, List<String> symptoms, List<Illness> illnesses, int stages) {
         for (Illness illness : illnesses) {
             illness.diagnose(person, symptoms, stages);
@@ -44,6 +46,20 @@ public class Analysis {
             return new Chemotherapy();
         } else {
             return null;
+        }
+    }
+
+    public void addObserver(ObserverPattern observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ObserverPattern observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(String message) {
+        for (ObserverPattern observer : observers) {
+            observer.update(message);
         }
     }
 }
