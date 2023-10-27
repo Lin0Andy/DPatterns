@@ -1,42 +1,41 @@
 package Illness;
 
-import Decorations.Decorator;
-import Decorations.NailChanges.NailBrittleness;
-import Decorations.SkinChanges.SkinColor;
 import Person.Person;
 
 import java.util.*;
+import Adaptor.*;
 
 public class Diabetes implements Illness {
-    List<String> symptoms = List.of("Frequent Urination", "Increased Thirst");
+    Adapter adapter = new Adapter();
+    List<String> symptoms = List.of(adapter.getMessage("symptom.symptom7"), adapter.getMessage("symptom.symptom8"));
 
     @Override
-    public void diagnose(Person person, List<String> cSymptoms, int stages) {
+    public void diagnose(Person person, List<String> cSymptoms, int stages, Adapter adapter) {
         int points = 0;
 
         for (String symptom : cSymptoms) {
-            if (symptom.equals("Frequent Urination") || symptom.equals("Increased Thirst")) {
+            if (symptom.equals(adapter.getMessage("symptom.symptom7")) || symptom.equals(adapter.getMessage("symptom.symptom8"))) {
                 points++;
             }
         }
 
         if (points >= 2) {
-            System.out.println("Diagnosed with Diabetes.");
+            System.out.println(adapter.getMessage("diagnose.diabetes"));
             person.setCurrentIllness(this);
             person.setIsIll(true);
         } else {
-            System.out.println("No specific illness detected.");
-            doDamage(person, stages);
+            System.out.println(adapter.getMessage("diagnose.no"));
+            doDamage(person, stages, adapter);
         }
     }
 
     @Override
-    public void doDamage(Person person, int stages) {
+    public void doDamage(Person person, int stages, Adapter adapter) {
         if (stages > 0) {
             stages--;
-            System.out.println("Your illness worsened. Remaining stages: " + stages);
+            System.out.println(adapter.getMessage("stages.remaining") + " " + stages);
         } else {
-            System.out.println("Your illness reached critical stage. Cannot be cured.");
+            System.out.println(adapter.getMessage("stages.critical"));
             person.setIsIll(false);
         }
     }
