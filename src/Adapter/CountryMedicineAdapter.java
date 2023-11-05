@@ -1,13 +1,15 @@
 package Adapter;
 
+import Factory.*;
+
 public class CountryMedicineAdapter implements Prescription {
     private Prescription prescription;
 
     public CountryMedicineAdapter(String country) {
         if (country.equals("USA")) {
-            prescription = new Drug1();
+            prescription = new USPrescriptionFactory().createPrescription();
         } else if (country.equals("UK")) {
-            prescription = new Drug2();
+            prescription = new UKPrescriptionFactory().createPrescription();
         }
     }
 
