@@ -41,7 +41,7 @@
 <p>Design patterns are essential in software development as they provide proven solutions to common design problems. They enhance code readability, maintainability, and reusability, ultimately leading to more robust and scalable applications. In this project, the use of design patterns helps to organize the codebase, clarify the relationships between different components, and facilitate future modifications or extensions. By employing these patterns, the project demonstrates best practices in software design and promotes a structured approach to problem-solving.</p>
 
 <br><h3>UML Diagram: </h3>
-<img src="Images/diagram.jpg" alt="UML Diagram" title="UML Diagram">
+![UML Diagaram](src/Images/diagram.jpg)
 
 
 <br><br><h2>Conclusion</h2>
