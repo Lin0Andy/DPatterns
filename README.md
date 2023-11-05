@@ -40,15 +40,15 @@
 <br><h3>Importance of Design Patterns:</h3>
 <p>Design patterns are essential in software development as they provide proven solutions to common design problems. They enhance code readability, maintainability, and reusability, ultimately leading to more robust and scalable applications. In this project, the use of design patterns helps to organize the codebase, clarify the relationships between different components, and facilitate future modifications or extensions. By employing these patterns, the project demonstrates best practices in software design and promotes a structured approach to problem-solving.</p>
 
-<br><h3>UML Diagram: </h3>
+<br><br><h2>UML Diagram: </h2>
 <img src="images/diagram.jpg" alt="UML Diagram" title="UML Diagram">
 
 
-<h2>Conclusion</h2>
+<br><br><h2>Conclusion</h2>
 <h3>Purpose:</h3>
 <p>The project simulates a simplified version of the diagnostic and treatment process for various illnesses. It aims to provide insight into how modern medicine functions and highlight its challenges and potential areas for improvement.</p>
 
-<h3>Patterns Used:</h3>
+<br><h3>Patterns Used:</h3>
 
 <h5>Strategy Pattern:</h5>
 <p>Implemented in the Illness interface, allowing different illnesses to have different strategies for diagnosis, damage, and symptom retrieval.</p>
@@ -63,12 +63,12 @@
 <h5>Factory Method Pattern:</h5>
 <p>Employed in the PrescriptionFactory and its concrete subclasses (USPrescriptionFactory, UKPrescriptionFactory). Facilitates the creation of different types of prescriptions based on the user's country.</p>
 
-<h3>Outcomes:</h3>
+<br><h3>Outcomes:</h3>
 
 <p>The project successfully creates a simplified medical simulation, allowing users to input their symptoms and receive a diagnosis and potential treatment options.
 It showcases the use of various design patterns to organize and enhance the codebase, promoting best practices in software design.</p>
 
-<h3>Challenges Faced:</h3>
+<br><h3>Challenges Faced:</h3>
 <h5>Adapter and Factory Method Implementation:</h5> 
 <p>These patterns presented challenges in terms of finding appropriate use cases and integrating them into the project.</p>
 <h5>Decorator Realization:</h5> 
@@ -76,7 +76,7 @@ It showcases the use of various design patterns to organize and enhance the code
 <h5>UML Diagram:</h5> 
 <p>Creating a comprehensive UML diagram proved to be a challenge, requiring careful consideration of class relationships and structure.</p>
 
-<h3>Ideas for Future Enhancements or Improvements:</h3>
+<br><h3>Ideas for Future Enhancements or Improvements:</h3>
 <h5>Expand Illness and Treatment Options:</h5>
 <p>Introduce a wider range of illnesses and corresponding treatments to provide a more comprehensive simulation.</p>
 <h5>Enhance User Interaction:</h5>
