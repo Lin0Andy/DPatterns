@@ -1,6 +1,7 @@
 package Person;
 
 import Adapter.*;
+import Factory.Prescription;
 import Illness.*;
 import Observer.*;
 import Treatment.Treatment;

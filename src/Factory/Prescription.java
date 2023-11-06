@@ -1,4 +1,4 @@
-package Adapter;
+package Factory;
 
 public interface Prescription {
     void prescribeMedicine();

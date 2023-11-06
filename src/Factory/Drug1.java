@@ -1,4 +1,4 @@
-package Adapter;
+package Factory;
 
 public class Drug1 implements Prescription{
 
